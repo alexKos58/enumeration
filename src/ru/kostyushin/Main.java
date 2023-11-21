@@ -13,7 +13,7 @@ public class Main {
     static int numThreads = 10;
 
     public static void main(String[] args) {
-        long startTime = System.currentTimeMillis();
+        double startTime = System.currentTimeMillis();
         int maxNumber = 30_000_000;
 
         // количество обрабатываемых чисел в одном потоке
@@ -36,20 +36,23 @@ public class Main {
             e.printStackTrace();
         }
 
-        long endTime = System.currentTimeMillis();
-        long executionTime = endTime - startTime;
+        double endTime = System.currentTimeMillis();
+        double executionTime = endTime - startTime;
 
+        System.out.println("Кол-во потоков - " + numThreads);
         System.out.println("Количество элементов в TreeSet: " + allNumbers.size());
-        System.out.println("Время выполнения: " + executionTime + " миллисекунд");
+        System.out.println("Время выполнения: " + executionTime/1000 + " секунд");
         System.out.println(allNumbers.first());
         System.out.println(allNumbers.last());
 
     }
 
     private static void someProcess(int start, int end) {
-        for (int i = start; i < end; i++) {
+        int i = start;
+        while (i < end) {
             allNumbers.add(i);
             System.out.println("Added " + i);
+            i++;
         }
     }
 }
